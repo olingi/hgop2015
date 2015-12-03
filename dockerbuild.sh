@@ -12,6 +12,6 @@ cd dist
 npm install --production
 
 echo Building docker image
-docker build -t regnbogasulta/tictactoe .
+docker build -t olingi/tictactoe .
 
 echo "Done"
