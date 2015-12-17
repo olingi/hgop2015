@@ -28,8 +28,8 @@ describe('create game command', function() {
     when = {
       id: "42",
       gameId: "1",
-      comm: "CreateGame",
-      userName: "Lt.Y",
+      comm: "createGame",
+      userName: "Mr.X",
       name: "AlphaGame",
       timeStamp: "2015.12.02T10:29:44"
     };
@@ -37,7 +37,7 @@ describe('create game command', function() {
       id: "42",
       gameId: "1",
       event: "GameCreated",
-      userName: "Lt.Y",
+      userName: "Mr.X",
       name: "AlphaGame",
       timeStamp: "2015.12.02T10:29:44"
     }];
