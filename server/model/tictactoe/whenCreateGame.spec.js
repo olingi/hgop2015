@@ -3,12 +3,11 @@ var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 describe('create game command', function() {
   var given, when, then;
 
-<<<<<<< HEAD
   it('should create a game', function(){
       given = [];
       when = {
           id: "42",
-          comm: "CreateGame",
+          comm: "createGame",
           userName: "Mr.X",
           name: "AlphaGame",
           timeStamp:"2015.12.02T11:29:44"
@@ -16,7 +15,7 @@ describe('create game command', function() {
       then = [{
           id:"42",
           event: "GameCreated",
-          userName: "Lt.Y",
+          userName: "Mr.X",
           name: "AlphaGame",
           timeStamp: "2015.12.02T11:29:44"
       }];
