@@ -27,7 +27,6 @@ module.exports = function tictactoeCommandHandler(events) {
         return cmd;
       }
     }
-
     // check diagonal win
     if (gameState.board[0][0] === gameState.board[1][1] &&
       gameState.board[0][0] === gameState.board[2][2]) {

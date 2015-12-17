@@ -3,6 +3,7 @@ var tictactoeCommandHandler = require('./tictactoeCommandHandler');
 describe('create game command', function() {
   var given, when, then;
 
+<<<<<<< HEAD
   it('should create a game', function(){
       given = [];
       when = {
