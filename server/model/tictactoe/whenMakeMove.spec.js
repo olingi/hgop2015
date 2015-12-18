@@ -6,15 +6,17 @@ describe('when make move command', function(){
 
   beforeEach(function(){
     given= [{
-      id:"42",
+      id:"1",
       event:"GameCreated",
       name:"AlphaGame",
       userName:'Mr.X',
+      side: "X",
       timeStamp: "2015.12.02T11:29:44"
     }, {
-      id:"42",
+      id:"2",
       event:"GameJoined",
       userName:'Lt. Y',
+      side: "O",
       timeStamp: "2015.12.02T11:30:50"
     }];
   });
@@ -51,6 +53,7 @@ describe('when make move command', function(){
         id:"42",
         event:"MoveMade",
         userName:"Lt.Y",
+        side: "O",
         name:"AlphaGame",
         x:0,
         y:1,
@@ -61,6 +64,7 @@ describe('when make move command', function(){
         id:"42",
         comm:"makeMove",
         userName:"Lt.Y",
+        side: "O",
         x:0,
         y:1,
         timeStamp: "2015.12.02T11:30:50"
@@ -70,6 +74,7 @@ describe('when make move command', function(){
         id:"42",
         event:"MoveMade",
         userName:"Lt.Y",
+        side: "O",
         name:"AlphaGame",
         x:0,
         y:1,
@@ -88,9 +93,10 @@ describe('when make move command', function(){
       it('should Win Horizontally', function(){
           for (var i = 0; i < 2; i++) {
               given.push({
-                  id: "42",
+                  id: "42" + i,
                   event: "MoveMade",
                   userName: "Lt.Y",
+                  side: "O",
                   name: "AlphaGame",
                   x: i,
                   y: 0,
@@ -101,6 +107,7 @@ describe('when make move command', function(){
               id: "42",
               comm: "makeMove",
               userName: "Lt.Y",
+              side: "O",
               name: "AlphaGame",
               x: 2,
               y: 0,
@@ -110,6 +117,7 @@ describe('when make move command', function(){
               id: "42",
               event: "MoveMade",
               userName: "Lt.Y",
+              side: "O",
               name: "AlphaGame",
               x: 2,
               y: 0,
@@ -125,9 +133,10 @@ describe('when make move command', function(){
       it('should Win Vertically', function(){
           for (var i = 0; i < 2; i++) {
               given.push({
-                  id: "42",
+                  id: "42" + i,
                   event: "MoveMade",
                   userName: "Lt.Y",
+                  side: "O",
                   name: "AlphaGame",
                   x: 0,
                   y: i,
@@ -138,6 +147,7 @@ describe('when make move command', function(){
               id: "42",
               comm: "makeMove",
               userName: "Lt.Y",
+              side: "O",
               name: "AlphaGame",
               x: 0,
               y: 2,
@@ -147,6 +157,7 @@ describe('when make move command', function(){
               id: "42",
               event: "MoveMade",
               userName: "Lt.Y",
+              side: "O",
               name: "AlphaGame",
               x: 0,
               y: 2,
@@ -162,9 +173,10 @@ describe('when make move command', function(){
       it('should Win Diagonally', function(){
           for (var i = 0; i < 2; i++) {
               given.push({
-                  id: "42",
+                  id: "42" + i,
                   event: "MoveMade",
                   userName: "Lt.Y",
+                  side: "O",
                   name: "AlphaGame",
                   x: i,
                   y: i,
@@ -175,6 +187,7 @@ describe('when make move command', function(){
               id: "42",
               comm: "makeMove",
               userName: "Lt.Y",
+              side: "O",
               name: "AlphaGame",
               x: 2,
               y: 2,
@@ -184,6 +197,7 @@ describe('when make move command', function(){
               id: "42",
               event: "MoveMade",
               userName: "Lt.Y",
+              side: "O",
               name: "AlphaGame",
               x: 2,
               y: 2,

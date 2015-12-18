@@ -9,43 +9,33 @@ module.exports = function tictactoeCommandHandler(events) {
     ]
   };
 
-  var eventHandlers = {
-    'MoveMade': function(event) {
-      gameState.board[event.x][event.y] = event.side;
-    }
-  };
-  _.each(events, function(event) {
-    var eventHandler = eventHandlers[event.event];
-    if (eventHandler) eventHandler(event);
-  });
-
-  const checkWin = function() {
+  const checkWin = function(cmd) {
     // check for Horizontal and Vertical wins
     for (var i = 0; i < 3; i++) {
       // check Horizontal win
-      if (gameState.board[0][i] !== '' &&
-        gameState.board[0][i] === gameState.board[1][i] &&
-        gameState.board[0][i] === gameState.board[2][i]) {
-        return true;
-      }
+      if (gameState.board[0][i] === cmd.side &&
+          gameState.board[1][i] === cmd.side &&
+          gameState.board[2][i] === cmd.side) {
+              return true;
 
+      }
       // check Vertical win
-      if (gameState.board[i][0] !== '' &&
-        gameState.board[i][0] === gameState.board[i][1] &&
-        gameState.board[i][0] === gameState.board[i][2]) {
-        return true;
+      if (gameState.board[i][0] === cmd.side &&
+          gameState.board[i][1] === cmd.side &&
+          gameState.board[i][2] === cmd.side) {
+              return true;
       }
     }
     // check diagonal win
-    if (gameState.board[0][0] !== '' &&
-      gameState.board[0][0] === gameState.board[1][1] &&
-      gameState.board[0][0] === gameState.board[2][2]) {
-      return true;
+    if (gameState.board[0][0] === cmd.side &&
+        gameState.board[1][1] === cmd.side &&
+        gameState.board[2][2] === cmd.side) {
+            return true;
     } else if (
-      gameState.board[2][0] !== '' &&
-      gameState.board[2][0] === gameState.board[1][1] &&
-      gameState.board[2][0] === gameState.board[2][0]) {
-      return true;
+      gameState.board[2][0] === cmd.side &&
+      gameState.board[1][1] === cmd.side &&
+      gameState.board[0][2] === cmd.side) {
+          return true;
     }
     return false;
   }
@@ -61,6 +51,17 @@ module.exports = function tictactoeCommandHandler(events) {
     }
     return true;
   }
+
+  var eventHandlers = {
+    'MoveMade': function(event) {
+      gameState.board[event.x][event.y] = event.side;
+    }
+  };
+
+  _.each(events, function(event) {
+    var eventHandler = eventHandlers[event.event];
+    if (eventHandler) eventHandler(event);
+  });
 
   var handlers = {
     "createGame": function(cmd) {
@@ -96,10 +97,10 @@ module.exports = function tictactoeCommandHandler(events) {
         id: cmd.id,
         event: "MoveMade",
         userName: cmd.userName,
+        side: cmd.side,
         name: gameState.gameCreatedEvent.name,
         x: cmd.x,
         y: cmd.y,
-        side: cmd.side,
         timeStamp: cmd.timeStamp
       }];
 
@@ -107,12 +108,14 @@ module.exports = function tictactoeCommandHandler(events) {
         currentState.push({
           event: "IllegalMove"
         });
+        return currentState;
       }
-      if (checkWin()) {
+      gameState.board[cmd.x][cmd.y] = cmd.side;
+      if (checkWin(cmd)) {
         currentState.push({
           event: "Winner"
         });
-      } else if (checkDraw()) {
+    } else if (checkDraw()) {
         currentState.push({
           event: "Draw"
         });
