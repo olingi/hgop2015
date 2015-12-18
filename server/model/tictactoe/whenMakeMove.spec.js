@@ -7,6 +7,7 @@ describe('when make move command', function(){
   beforeEach(function(){
     given= [{
       id:"55",
+      gameId: "10",
       event:"GameCreated",
       name:"AlphaGame",
       userName:'Mr.X',
@@ -14,6 +15,7 @@ describe('when make move command', function(){
       timeStamp: "2015.12.02T11:29:44"
     }, {
       id:"56",
+      gameId: "10",
       event:"GameJoined",
       userName:'Lt.Y',
       side: "O",
@@ -25,6 +27,7 @@ describe('when make move command', function(){
     it('should join game',function(){
       when={
         id:"42",
+        gameId: "10",
         comm:"makeMove",
         userName : "Lt.Y",
         x:0,
@@ -33,6 +36,7 @@ describe('when make move command', function(){
       };
       then=[{
         id:"42",
+        gameId: "10",
         event:"MoveMade",
         userName:"Lt.Y",
         name:"AlphaGame",
@@ -51,6 +55,7 @@ describe('when make move command', function(){
     it('placing move in same place should be illegal',function(){
       given.push({
         id:"42",
+        gameId: "10",
         event:"MoveMade",
         userName:"Lt.Y",
         side: "O",
@@ -62,6 +67,7 @@ describe('when make move command', function(){
 
       when={
         id:"42",
+        gameId: "10",
         comm:"makeMove",
         userName:"Lt.Y",
         side: "O",
@@ -72,6 +78,7 @@ describe('when make move command', function(){
 
       then=[{
         id:"42",
+        gameId: "10",
         event:"MoveMade",
         userName:"Lt.Y",
         side: "O",
@@ -94,6 +101,7 @@ describe('when make move command', function(){
           for (var i = 0; i < 2; i++) {
               given.push({
                   id: "42" + i,
+                  gameId: "10",
                   event: "MoveMade",
                   userName: "Lt.Y",
                   side: "O",
@@ -105,6 +113,7 @@ describe('when make move command', function(){
           }
           when={
               id: "42",
+              gameId: "10",
               comm: "makeMove",
               userName: "Lt.Y",
               side: "O",
@@ -115,6 +124,7 @@ describe('when make move command', function(){
           };
           then=[{
               id: "42",
+              gameId: "10",
               event: "MoveMade",
               userName: "Lt.Y",
               side: "O",
@@ -134,6 +144,7 @@ describe('when make move command', function(){
           for (var i = 0; i < 2; i++) {
               given.push({
                   id: "42" + i,
+                  gameId: "10",
                   event: "MoveMade",
                   userName: "Lt.Y",
                   side: "O",
@@ -145,6 +156,7 @@ describe('when make move command', function(){
           }
           when={
               id: "42",
+              gameId: "10",
               comm: "makeMove",
               userName: "Lt.Y",
               side: "O",
@@ -155,6 +167,7 @@ describe('when make move command', function(){
           };
           then=[{
               id: "42",
+              gameId: "10",
               event: "MoveMade",
               userName: "Lt.Y",
               side: "O",
@@ -174,6 +187,7 @@ describe('when make move command', function(){
           for (var i = 0; i < 2; i++) {
               given.push({
                   id: "42" + i,
+                  gameId: "10",
                   event: "MoveMade",
                   userName: "Lt.Y",
                   side: "O",
@@ -185,6 +199,7 @@ describe('when make move command', function(){
           }
           when={
               id: "42",
+              gameId: "10",
               comm: "makeMove",
               userName: "Lt.Y",
               side: "O",
@@ -195,6 +210,7 @@ describe('when make move command', function(){
           };
           then=[{
               id: "42",
+              gameId: "10",
               event: "MoveMade",
               userName: "Lt.Y",
               side: "O",
@@ -215,6 +231,7 @@ describe('when make move command', function(){
       it("in a draw", function(){
           given.push({
               id: "1",
+              gameId: "10",
               event: "MoveMade",
               userName: "Mr.X",
               side: "X",
@@ -224,6 +241,7 @@ describe('when make move command', function(){
               timeStamp: "2015.12.02T11:30:53"
           },{
               id: "2",
+              gameId: "10",
               event: "MoveMade",
               userName: "Lt.Y",
               side: "O",
@@ -233,6 +251,7 @@ describe('when make move command', function(){
               timeStamp: "2015.12.02T11:30:54"
           },{
               id: "3",
+              gameId: "10",
               event: "MoveMade",
               userName: "Mr.X",
               side: "X",
@@ -242,6 +261,7 @@ describe('when make move command', function(){
               timeStamp: "2015.12.02T11:30:55"
           },{
               id: "4",
+              gameId: "10",
               event: "MoveMade",
               userName: "Lt.Y",
               side: "O",
@@ -251,6 +271,7 @@ describe('when make move command', function(){
               timeStamp: "2015.12.02T11:30:56"
           },{
               id: "5",
+              gameId: "10",
               event: "MoveMade",
               userName: "Mr.X",
               side: "X",
@@ -260,6 +281,7 @@ describe('when make move command', function(){
               timeStamp: "2015.12.02T11:30:57"
           },{
               id: "6",
+              gameId: "10",
               event: "MoveMade",
               userName: "Lt.Y",
               side: "O",
@@ -269,6 +291,7 @@ describe('when make move command', function(){
               timeStamp: "2015.12.02T11:30:58"
           },{
               id: "7",
+              gameId: "10",
               event: "MoveMade",
               userName: "Mr.X",
               side: "X",
@@ -278,6 +301,7 @@ describe('when make move command', function(){
               timeStamp: "2015.12.02T11:30:59"
           },{
               id: "8",
+              gameId: "10",
               event: "MoveMade",
               userName: "Lt.Y",
               side: "O",
@@ -288,6 +312,7 @@ describe('when make move command', function(){
           });
           when={
               id: "9",
+              gameId: "10",
               comm: "makeMove",
               userName: "Mr.X",
               side: "X",
@@ -298,6 +323,7 @@ describe('when make move command', function(){
           };
           then=[{
               id: "9",
+              gameId: "10",
               event: "MoveMade",
               userName: "Mr.X",
               side: "X",
