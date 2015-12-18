@@ -6,28 +6,23 @@ describe('join game command', function(){
 
   it('should join game',function(){
     given= [{
-      id:"1234",
-      event:"GameCreated",
-      userName: "Gulli",
+      id:"42",
+      event:"gameCreated",
+      userName: "Mr.X",
       timeStamp: "2015.12.02T11:29:44"
     }];
     when={
-      id:"12345",
-      comm:"JoinGame",
-      user:{
-        userName : "Halli",
-        side:'O'
-      },
-      name:"TheFirstGame",
+      id:"42",
+      comm:"joinGame",
+      userName : "Lt.Y",
+      name:"AlphaGame",
       timeStamp: "2015.12.02T11:30:50"
     };
     then=[{
-      id:"12345",
+      id:"42",
       event:"GameJoined",
-      user:{
-        userName : "Halli",
-        side:'O'
-      },
+      userName : "Lt.Y",
+      otherUserName : "Mr.X",
       timeStamp: "2015.12.02T11:30:50"
     }];
 
@@ -39,22 +34,16 @@ describe('join game command', function(){
   it('should reject joining of a non-existing game',function(){
     given= [];
     when={
-      id:"12345",
-      comm:"JoinGame",
-      user:{
-        userName : "Halli",
-        side: 'O'
-      },
-      name:"TheFirstGame",
+      id:"42",
+      comm:"joinGame",
+      userName : "Lt.Y",
+      name:"AlphaGame",
       timeStamp: "2015.12.02T11:30:55"
     };
     then=[{
-      id:"12345",
+      id:"42",
       event:"GameDoesNotExist",
-      user:{
-        userName : "Halli",
-        side: 'O'
-      },
+      userName : "Lt.Y",
       timeStamp: "2015.12.02T11:30:55"
     }];
 

@@ -2,7 +2,7 @@
 [0m[0m
 Express server listening on 9000, in test mode
 [0m  GET /api/gameHistory[0m
-[90mPOST /api/createGame [32m200 [90m4ms - 2b[0m
+[90mPOST /api/createGame [32m200 [90m3ms - 2b[0m
 [90mGET /api/gameHistory/999 [32m200 [90m1ms - 6b[0m
 [2K[0G  [31m  1) should respond with JSON array with created events for game[0m
 
@@ -20,15 +20,19 @@ Express server listening on 9000, in test mode
 [2K[0G  [32m  ✓[0m[90m should create game with another user another time [0m
 
 [0m  join game command[0m
-[2K[0G  [31m  2) should join game[0m
-[2K[0G  [31m  3) should reject joining of a non-existing game[0m
+[2K[0G  [32m  ✓[0m[90m should join game [0m
+[2K[0G  [32m  ✓[0m[90m should reject joining of a non-existing game [0m
 
 [0m  when make move command[0m
 [0m    on new game[0m
-[2K[0G    [31m  4) should join game[0m
+[2K[0G    [32m  ✓[0m[90m should join game [0m
 [0m    one previous move[0m
-[2K[0G    [31m  5) placing move in same place should be illegal[0m
+[2K[0G    [32m  ✓[0m[90m placing move in same place should be illegal [0m
+[0m    is winning move[0m
+[2K[0G    [31m  2) should Win Horizontally[0m
+[2K[0G    [31m  3) should Win Vertically[0m
+[2K[0G    [31m  4) should Win Diagonally[0m
 
 
-[92m [0m[32m 7 passing[0m[90m (49ms)[0m
+[92m [0m[32m 11 passing[0m[90m (46ms)[0m
 

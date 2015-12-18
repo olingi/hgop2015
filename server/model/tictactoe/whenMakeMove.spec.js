@@ -6,21 +6,15 @@ describe('when make move command', function(){
 
   beforeEach(function(){
     given= [{
-      id:"1234",
+      id:"42",
       event:"GameCreated",
-      name:"TheFirstGame",
-      user : {
-        userName:'Gulli',
-        side: 'X'
-      },
+      name:"AlphaGame",
+      userName:'Mr.X',
       timeStamp: "2015.12.02T11:29:44"
     }, {
-      id:"12345",
+      id:"42",
       event:"GameJoined",
-      user : {
-        userName:'Halli',
-        side: 'O'
-      },
+      userName:'Lt. Y',
       timeStamp: "2015.12.02T11:30:50"
     }];
   });
@@ -28,24 +22,18 @@ describe('when make move command', function(){
   describe('on new game', function(){
     it('should join game',function(){
       when={
-        id:"12345",
-        comm:"MakeMove",
-        user:{
-          userName : "Halli",
-          side:'X'
-        },
+        id:"42",
+        comm:"makeMove",
+        userName : "Lt.Y",
         x:0,
         y:1,
         timeStamp: "2015.12.02T11:30:50"
       };
       then=[{
-        id:"12345",
+        id:"42",
         event:"MoveMade",
-        user:{
-          userName:"Halli",
-          side:'X'
-        },
-        name:"TheFirstGame",
+        userName:"Lt.Y",
+        name:"AlphaGame",
         x:0,
         y:1,
         timeStamp: "2015.12.02T11:30:50"
@@ -60,47 +48,153 @@ describe('when make move command', function(){
   describe("one previous move", function(){
     it('placing move in same place should be illegal',function(){
       given.push({
-        id:"12345",
+        id:"42",
         event:"MoveMade",
-        user:{
-          userName:"Halli",
-          side:'X'
-        },
-        name:"TheFirstGame",
+        userName:"Lt.Y",
+        name:"AlphaGame",
         x:0,
         y:1,
         timeStamp: "2015.12.02T11:30:50"
       });
 
       when={
-        id:"12345",
-        comm:"MakeMove",
-        user:{
-          userName:"Halli",
-          side:'X'
-        },
+        id:"42",
+        comm:"makeMove",
+        userName:"Lt.Y",
         x:0,
         y:1,
         timeStamp: "2015.12.02T11:30:50"
       };
 
       then=[{
-        id:"12345",
-        event:"IllegalMove",
-        user:{
-          userName:"Halli",
-          side:'X'
-        },
-        name:"TheFirstGame",
+        id:"42",
+        event:"MoveMade",
+        userName:"Lt.Y",
+        name:"AlphaGame",
         x:0,
         y:1,
         timeStamp: "2015.12.02T11:30:50"
-      }];
+      },{
+        event:"IllegalMove"
+        }];
 
       var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
 
       JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
 
     });
+  });
+  describe('is winning move', function(){
+      it('should Win Horizontally', function(){
+          for (var i = 0; i < 2; i++) {
+              given.push({
+                  id: "42",
+                  event: "MoveMade",
+                  userName: "Lt.Y",
+                  name: "AlphaGame",
+                  x: i,
+                  y: 0,
+                  timeStamp: "2015.12.02T11:30:5" + i
+              });
+          }
+          when={
+              id: "42",
+              comm: "makeMove",
+              userName: "Lt.Y",
+              name: "AlphaGame",
+              x: 2,
+              y: 0,
+              timeStamp: "2015.12.02T11:30:53"
+          };
+          then=[{
+              id: "42",
+              event: "MoveMade",
+              userName: "Lt.Y",
+              name: "AlphaGame",
+              x: 2,
+              y: 0,
+              timeStamp: "2015.12.02T11:30:53"
+          },{
+              event:"Winner"
+          }];
+
+          var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+          JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+      });
+      it('should Win Vertically', function(){
+          for (var i = 0; i < 2; i++) {
+              given.push({
+                  id: "42",
+                  event: "MoveMade",
+                  userName: "Lt.Y",
+                  name: "AlphaGame",
+                  x: 0,
+                  y: i,
+                  timeStamp: "2015.12.02T11:30:5" + i
+              });
+          }
+          when={
+              id: "42",
+              comm: "makeMove",
+              userName: "Lt.Y",
+              name: "AlphaGame",
+              x: 0,
+              y: 2,
+              timeStamp: "2015.12.02T11:30:53"
+          };
+          then=[{
+              id: "42",
+              event: "MoveMade",
+              userName: "Lt.Y",
+              name: "AlphaGame",
+              x: 0,
+              y: 2,
+              timeStamp: "2015.12.02T11:30:53"
+          },{
+              event:"Winner"
+          }];
+
+          var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+          JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+      });
+      it('should Win Diagonally', function(){
+          for (var i = 0; i < 2; i++) {
+              given.push({
+                  id: "42",
+                  event: "MoveMade",
+                  userName: "Lt.Y",
+                  name: "AlphaGame",
+                  x: i,
+                  y: i,
+                  timeStamp: "2015.12.02T11:30:5" + i
+              });
+          }
+          when={
+              id: "42",
+              comm: "makeMove",
+              userName: "Lt.Y",
+              name: "AlphaGame",
+              x: 2,
+              y: 2,
+              timeStamp: "2015.12.02T11:30:53"
+          };
+          then=[{
+              id: "42",
+              event: "MoveMade",
+              userName: "Lt.Y",
+              name: "AlphaGame",
+              x: 2,
+              y: 2,
+              timeStamp: "2015.12.02T11:30:53"
+          },{
+              event:"Winner"
+          }];
+
+          var actualEvents = tictactoeCommandHandler(given).executeCommand(when);
+
+          JSON.stringify(actualEvents).should.be.exactly(JSON.stringify(then));
+      });
   });
 });
