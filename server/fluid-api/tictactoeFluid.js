@@ -4,7 +4,7 @@ var acceptanceUrl = process.env.ACCEPTANCE_URL;
 
 function given(userApi) {
   var _expectedEvents=[{
-    "id": "1234",
+    "id": "42",
     "gameId": userApi._command.gameId,
     "event": "EventName",
     "userName": userApi._command.userName,

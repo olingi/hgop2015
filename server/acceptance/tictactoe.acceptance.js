@@ -17,11 +17,12 @@ describe('TEST ENV GET /api/gameHistory', function () {
   it('should execute same test using old style', function (done) {
 
     var command = {
-      id: "1234",
-      gameId: "100000",
-      comm: "CreateGame",
-      userName: "Gulli",
-      name: "TheFirstGame",
+      id: "42",
+      gameId: "10",
+      comm: "createGame",
+      userName: "Mr.X",
+      side: "X",
+      name: "AlphaGame",
       timeStamp: "2014-12-02T11:29:29"
     };
 
@@ -33,7 +34,7 @@ describe('TEST ENV GET /api/gameHistory', function () {
       .end(function (err, res) {
         if (err) return done(err);
         request(acceptanceUrl)
-          .get('/api/gameHistory/100000')
+          .get('/api/gameHistory/10')
           .expect(200)
           .expect('Content-Type', /json/)
           .end(function (err, res) {
@@ -41,11 +42,12 @@ describe('TEST ENV GET /api/gameHistory', function () {
             res.body.should.be.instanceof(Array);
             should(res.body).eql(
               [{
-                "id": "1234",
-                "gameId": "100000",
+                "id": "42",
+                "gameId": "10",
                 "event": "GameCreated",
-                "userName": "Gulli",
-                "name": "TheFirstGame",
+                "userName": "Mr.X",
+                "side": "X",
+                "name": "AlphaGame",
                 "timeStamp": "2014-12-02T11:29:29"
               }]);
             done();
@@ -55,8 +57,8 @@ describe('TEST ENV GET /api/gameHistory', function () {
 
 
    it('Should execute fluid API test', function (done) {
-     given(user("YourUser").createsGame("TheFirstGame"))
-     .expect("GameCreated").withName("TheFirstGame").isOk(done);
+     given(user("Mr.X").createsGame("AlphaGame"))
+     .expect("GameCreated").withName("AlphaGame").isOk(done);
    });
 
 });
