@@ -18,7 +18,7 @@ describe('TEST ENV GET /api/gameHistory', function () {
 
     var command = {
       id: "42",
-      gameId: "10",
+      gameId: "999",
       comm: "createGame",
       userName: "Mr.X",
       side: "X",
@@ -43,7 +43,7 @@ describe('TEST ENV GET /api/gameHistory', function () {
             should(res.body).eql(
               [{
                 "id": "42",
-                "gameId": "10",
+                "gameId": "999",
                 "event": "GameCreated",
                 "userName": "Mr.X",
                 "side": "X",

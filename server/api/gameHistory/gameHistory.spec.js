@@ -9,7 +9,7 @@ describe('GET /api/gameHistory', function () {
   it('should respond with JSON array with created events for game', function (done) {
     var command =     {
       id : "42",
-      gameId : "10",
+      gameId : "999",
       comm: "createGame",
       userName: "Mr.X",
       side: "X",
@@ -34,7 +34,7 @@ describe('GET /api/gameHistory', function () {
             should(res.body).eql(
               [{
                 "id": "42",
-                "gameId": "10",
+                "gameId": "999",
                 "event": "GameCreated",
                 "userName": "Mr.X",
                 "side" :"X",
