@@ -13,6 +13,8 @@ fi
 export GITHUB_URL=$(echo $GIT_URL | rev | cut -c 5- | rev)
 
 echo Building app
+FIREFOX_BIN=/usr/bin/X11/firefox
+CHROME_BIN=/usr/bin/X11/google-chrome
 grunt
 
 rc=$?
