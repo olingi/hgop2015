@@ -53,7 +53,7 @@ function user(userName) {
     _command: undefined,
     createsGame: function (gameId) {
       userApi._command = {
-        id: "1234",
+        id: "42",
         gameId: gameId,
         comm: "CreateGame",
         userName: userName,
