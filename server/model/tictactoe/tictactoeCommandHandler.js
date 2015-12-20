@@ -1,6 +1,6 @@
 var _ = require('lodash');
 module.exports = function tictactoeCommandHandler(events) {
-  const gameState = {
+  var gameState = {
     gameCreatedEvent: events[0],
     board: [
       ['', '', ''],
@@ -9,7 +9,7 @@ module.exports = function tictactoeCommandHandler(events) {
     ]
   };
 
-  const checkWin = function(cmd) {
+  var checkWin = function(cmd) {
     // check for Horizontal and Vertical wins
     for (var i = 0; i < 3; i++) {
       // check Horizontal win
@@ -40,7 +40,7 @@ module.exports = function tictactoeCommandHandler(events) {
     return false;
   }
 
-  const checkDraw = function() {
+  var checkDraw = function() {
     // check if draw
     for (var x = 0; x < 3; x++) {
       for (var y = 0; y < 3; y++) {
@@ -96,7 +96,7 @@ module.exports = function tictactoeCommandHandler(events) {
     },
 
     "makeMove": function(cmd) {
-      const currentState = [{
+      var currentState = [{
         id: cmd.id,
         gameId: cmd.gameId,
         event: "MoveMade",
